@@ -1,0 +1,1829 @@
+
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+  
+  
+    
+    
+  <script src="/assets/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/assets/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/assets/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/assets/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/assets/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="FunctionalProgramming," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Mary Rose Cook">
+<meta name="keywords" content="FunctionalProgramming">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A practical introduction to functional programming">
+<meta property="og:url" content="http://localhost:4000/technology/2020/07/01/FunctionalProgramming/">
+<meta property="og:site_name" content="Wonderland">
+<meta property="og:description" content="Mary Rose Cook">
+<meta property="og:locale" content="en">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="A practical introduction to functional programming">
+<meta name="twitter:description" content="Mary Rose Cook">
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://localhost:4000/"/>
+
+
+
+
+
+  <title>A practical introduction to functional programming | Wonderland</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Wonderland</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+<div id="posts" class="posts-expand">
+  
+  
+
+  
+
+  
+  
+  
+
+  <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://localhost:4000/technology/2020/07/01/FunctionalProgramming/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Austin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar/cloud_smile.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wonderland">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+          
+          
+            A practical introduction to functional programming
+          
+        </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-07-01T00:00:00+08:00">
+                2020-07-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/category/#/Technology" itemprop="url" rel="index">
+                    <span itemprop="name">Technology</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+            
+                <div class="post-description">
+                    
+                </div>
+            
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <p><strong>Mary Rose Cook</strong></p>
+
+<p><em><a href="https://maryrosecook.com/blog/post/a-practical-introduction-to-functional-programming">Original link</a></em></p>
+
+<p>Many functional programming articles teach abstract functional techniques. That is, composition, pipelining, higher order functions. This one is different. It shows examples of imperative, unfunctional code that people write every day and translates these examples to a functional style.</p>
+
+<p>The first section of the article takes short, data transforming loops and translates them into functional maps and reduces. The second section takes longer loops, breaks them up into units and makes each unit functional. The third section takes a loop that is a long series of successive data transformations and decomposes it into a functional pipeline.</p>
+
+<p>The examples are in Python, because many people find Python easy to read. A number of the examples eschew pythonicity in order to demonstrate functional techniques common to many languages: map, reduce, pipeline. All of the examples are in Python 2.</p>
+
+<hr />
+
+<h2 id="a-guide-rope">A guide rope</h2>
+
+<p>When people talk about functional programming, they mention a dizzying number of “functional” characteristics. They mention immutable data<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup>, first class functions<sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup> and tail call optimisation<sup id="fnref:3"><a href="#fn:3" class="footnote">3</a></sup>. These are language features that aid functional programming. They mention mapping, reducing, pipelining, recursing, currying<sup id="fnref:4"><a href="#fn:4" class="footnote">4</a></sup> and the use of higher order functions. These are programming techniques used to write functional code. They mention parallelization<sup id="fnref:5"><a href="#fn:5" class="footnote">5</a></sup>, lazy evaluation<sup id="fnref:6"><a href="#fn:6" class="footnote">6</a></sup> and determinism<sup id="fnref:7"><a href="#fn:7" class="footnote">7</a></sup>. These are advantageous properties of functional programs.</p>
+
+<p>Ignore all that. Functional code is characterised by one thing: the absence of side effects. It doesn’t rely on data outside the current function, and it doesn’t change data that exists outside the current function. Every other “functional” thing can be derived from this property. Use it as a guide rope as you learn.</p>
+
+<p>This is an unfunctional function:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4</pre></td><td class="code"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">def</span> <span class="nf">increment</span><span class="p">():</span>
+    <span class="k">global</span> <span class="n">a</span>
+    <span class="n">a</span> <span class="o">+=</span> <span class="mi">1</span>
+</code></pre></td></tr></tbody></table></div></div>
+
+<p>This is a functional function:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2</pre></td><td class="code"><pre class="highlight"><code><span class="k">def</span> <span class="nf">increment</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">1</span>
+</code></pre></td></tr></tbody></table></div></div>
+
+<hr />
+
+<h2 id="dont-iterate-over-lists-use-map-and-reduce">Don’t iterate over lists. Use map and reduce.</h2>
+
+<h3 id="map">Map</h3>
+
+<p>Map takes a function and a collection of items. It makes a new, empty collection, runs the function on each item in the original collection and inserts each return value into the new collection. It returns the new collection.</p>
+
+<p>This is a simple map that takes a list of names and returns a list of the lengths of those names:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4</pre></td><td class="code"><pre class="highlight"><code><span class="n">name_lengths</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">len</span><span class="p">,</span> <span class="p">[</span><span class="s">"Mary"</span><span class="p">,</span> <span class="s">"Isla"</span><span class="p">,</span> <span class="s">"Sam"</span><span class="p">])</span>
+
+<span class="k">print</span> <span class="n">name_lengths</span>
+<span class="c1"># =&gt; [4, 4, 3]
+</span></code></pre></td></tr></tbody></table></div></div>
+
+<p>This is a map that squares every number in the passed collection:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4</pre></td><td class="code"><pre class="highlight"><code><span class="n">squares</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+
+<span class="k">print</span> <span class="n">squares</span>
+<span class="c1"># =&gt; [0, 1, 4, 9, 16]
+</span></code></pre></td></tr></tbody></table></div></div>
+<p>This map doesn’t take a named function. It takes an anonymous, inlined function defined with <code class="language-plaintext highlighter-rouge">lambda</code>. The parameters of the lambda are defined to the left of the colon. The function body is defined to the right of the colon. The result of running the function body is (implicitly) returned.</p>
+
+<p>The unfunctional code below takes a list of real names and replaces them with randomly assigned code names.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10</pre></td><td class="code"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">random</span>
+
+<span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s">'Mary'</span><span class="p">,</span> <span class="s">'Isla'</span><span class="p">,</span> <span class="s">'Sam'</span><span class="p">]</span>
+<span class="n">code_names</span> <span class="o">=</span> <span class="p">[</span><span class="s">'Mr. Pink'</span><span class="p">,</span> <span class="s">'Mr. Orange'</span><span class="p">,</span> <span class="s">'Mr. Blonde'</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">names</span><span class="p">)):</span>
+    <span class="n">names</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">random</span><span class="p">.</span><span class="n">choice</span><span class="p">(</span><span class="n">code_names</span><span class="p">)</span>
+
+<span class="k">print</span> <span class="n">names</span>
+<span class="c1"># =&gt; ['Mr. Blonde', 'Mr. Blonde', 'Mr. Blonde']
+</span></code></pre></td></tr></tbody></table></div></div>
+
+<p>(As you can see, this algorithm can potentially assign the same secret code name to multiple secret agents. Hopefully, this won’t be a source of confusion during the secret mission.)</p>
+
+<p>This can be rewritten as a map:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8</pre></td><td class="code"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">random</span>
+
+<span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s">'Mary'</span><span class="p">,</span> <span class="s">'Isla'</span><span class="p">,</span> <span class="s">'Sam'</span><span class="p">]</span>
+
+<span class="n">secret_names</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">random</span><span class="p">.</span><span class="n">choice</span><span class="p">([</span><span class="s">'Mr. Pink'</span><span class="p">,</span>
+                                            <span class="s">'Mr. Orange'</span><span class="p">,</span>
+                                            <span class="s">'Mr. Blonde'</span><span class="p">]),</span>
+                   <span class="n">names</span><span class="p">)</span>
+</code></pre></td></tr></tbody></table></div></div>
+
+<p><strong>Exercise 1</strong>. Try rewriting the code below as a map. It takes a list of real names and replaces them with code names produced using a more robust strategy.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7</pre></td><td class="code"><pre class="highlight"><code><span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s">'Mary'</span><span class="p">,</span> <span class="s">'Isla'</span><span class="p">,</span> <span class="s">'Sam'</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">names</span><span class="p">)):</span>
+    <span class="n">names</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">hash</span><span class="p">(</span><span class="n">names</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+<span class="k">print</span> <span class="n">names</span>
+<span class="c1"># =&gt; [6306819796133686941, 8135353348168144921, -1228887169324443034]
+</span></code></pre></td></tr></tbody></table></div></div>
+
+<p>(Hopefully, the secret agents will have good memories and won’t forget each other’s secret code names during the secret mission.)</p>
+
+<p>My solution:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3</pre></td><td class="code"><pre class="highlight"><code><span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s">'Mary'</span><span class="p">,</span> <span class="s">'Isla'</span><span class="p">,</span> <span class="s">'Sam'</span><span class="p">]</span>
+
+<span class="n">secret_names</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">hash</span><span class="p">,</span> <span class="n">names</span><span class="p">)</span>
+</code></pre></td></tr></tbody></table></div></div>
+
+<h3 id="reduce">Reduce</h3>
+
+<p>Reduce takes a function and a collection of items. It returns a value that is created by combining the items.</p>
+
+<p>This is a simple reduce. It returns the sum of all the items in the collection.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4</pre></td><td class="code"><pre class="highlight"><code><span class="nb">sum</span> <span class="o">=</span> <span class="nb">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">a</span> <span class="o">+</span> <span class="n">x</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+
+<span class="k">print</span> <span class="nb">sum</span>
+<span class="c1"># =&gt; 10
+</span></code></pre></td></tr></tbody></table></div></div>
+<p><code class="language-plaintext highlighter-rouge">x</code> is the current item being iterated over. <code class="language-plaintext highlighter-rouge">a</code> is the accumulator. It is the value returned by the execution of the lambda on the previous item. <code class="language-plaintext highlighter-rouge">reduce()</code> walks through the items. For each one, it runs the lambda on the current <code class="language-plaintext highlighter-rouge">a</code> and <code class="language-plaintext highlighter-rouge">x</code> and returns the result as the <code class="language-plaintext highlighter-rouge">a</code> of the next iteration.</p>
+
+<p>What is <code class="language-plaintext highlighter-rouge">a</code> in the first iteration? There is no previous iteration result for it to pass along. <code class="language-plaintext highlighter-rouge">reduce()</code> uses the first item in the collection for <code class="language-plaintext highlighter-rouge">a</code> in the first iteration and starts iterating at the second item. That is, the first <code class="language-plaintext highlighter-rouge">x</code> is the second item.</p>
+
+<p>This code counts how often the word <code class="language-plaintext highlighter-rouge">'Sam'</code> appears in a list of strings:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10</pre></td><td class="code"><pre class="highlight"><code><span class="n">sentences</span> <span class="o">=</span> <span class="p">[</span><span class="s">'Mary read a story to Sam and Isla.'</span><span class="p">,</span>
+             <span class="s">'Isla cuddled Sam.'</span><span class="p">,</span>
+             <span class="s">'Sam chortled.'</span><span class="p">]</span>
+
+<span class="n">sam_count</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="n">sentences</span><span class="p">:</span>
+    <span class="n">sam_count</span> <span class="o">+=</span> <span class="n">sentence</span><span class="p">.</span><span class="n">count</span><span class="p">(</span><span class="s">'Sam'</span><span class="p">)</span>
+
+<span class="k">print</span> <span class="n">sam_count</span>
+<span class="c1"># =&gt; 3
+</span></code></pre></td></tr></tbody></table></div></div>
+
+<p>This is the same code written as a reduce:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7</pre></td><td class="code"><pre class="highlight"><code><span class="n">sentences</span> <span class="o">=</span> <span class="p">[</span><span class="s">'Mary read a story to Sam and Isla.'</span><span class="p">,</span>
+             <span class="s">'Isla cuddled Sam.'</span><span class="p">,</span>
+             <span class="s">'Sam chortled.'</span><span class="p">]</span>
+
+<span class="n">sam_count</span> <span class="o">=</span> <span class="nb">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">a</span> <span class="o">+</span> <span class="n">x</span><span class="p">.</span><span class="n">count</span><span class="p">(</span><span class="s">'Sam'</span><span class="p">),</span>
+                   <span class="n">sentences</span><span class="p">,</span>
+                   <span class="mi">0</span><span class="p">)</span>
+</code></pre></td></tr></tbody></table></div></div>
+
+<p>How does this code come up with its initial <code class="language-plaintext highlighter-rouge">a</code>? The starting point for the number of incidences of <code class="language-plaintext highlighter-rouge">'Sam'</code> cannot be <code class="language-plaintext highlighter-rouge">'Mary read a story to Sam and Isla.'</code> The initial accumulator is specified with the third argument to <code class="language-plaintext highlighter-rouge">reduce()</code>. This allows the use of a value of a different type from the items in the collection.</p>
+
+<p>Why are map and reduce better?</p>
+
+<p>First, they are often one-liners.</p>
+
+<p>Second, the important parts of the iteration - the collection, the operation and the return value - are always in the same places in every map and reduce.</p>
+
+<p>Third, the code in a loop may affect variables defined before it or code that runs after it. By convention, maps and reduces are functional.</p>
+
+<p>Fourth, map and reduce are elemental operations. Every time a person reads a <code class="language-plaintext highlighter-rouge">for</code> loop, they have to work through the logic line by line. There are few structural regularities they can use to create a scaffolding on which to hang their understanding of the code. In contrast, map and reduce are at once building blocks that can be combined into complex algorithms, and elements that the code reader can instantly understand and abstract in their mind. “Ah, this code is transforming each item in this collection. It’s throwing some of the transformations away. It’s combining the remainder into a single output.”</p>
+
+<p>Fifth, <code class="language-plaintext highlighter-rouge">map</code> and <code class="language-plaintext highlighter-rouge">reduce</code> have many friends that provide useful, tweaked versions of their basic behaviour. For example: <code class="language-plaintext highlighter-rouge">filter</code>, <code class="language-plaintext highlighter-rouge">all</code>, <code class="language-plaintext highlighter-rouge">any</code> and <code class="language-plaintext highlighter-rouge">find</code>.</p>
+
+<p><strong>Exercise 2.</strong> Try rewriting the code below using <code class="language-plaintext highlighter-rouge">map</code>, <code class="language-plaintext highlighter-rouge">reduce</code> and <code class="language-plaintext highlighter-rouge">filter</code>. Filter takes a function and a collection. It returns a collection of every item for which the function returned <code class="language-plaintext highlighter-rouge">True</code>.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16</pre></td><td class="code"><pre class="highlight"><code><span class="n">people</span> <span class="o">=</span> <span class="p">[{</span><span class="s">'name'</span><span class="p">:</span> <span class="s">'Mary'</span><span class="p">,</span> <span class="s">'height'</span><span class="p">:</span> <span class="mi">160</span><span class="p">},</span>
+          <span class="p">{</span><span class="s">'name'</span><span class="p">:</span> <span class="s">'Isla'</span><span class="p">,</span> <span class="s">'height'</span><span class="p">:</span> <span class="mi">80</span><span class="p">},</span>
+          <span class="p">{</span><span class="s">'name'</span><span class="p">:</span> <span class="s">'Sam'</span><span class="p">}]</span>
+
+<span class="n">height_total</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">height_count</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">person</span> <span class="ow">in</span> <span class="n">people</span><span class="p">:</span>
+    <span class="k">if</span> <span class="s">'height'</span> <span class="ow">in</span> <span class="n">person</span><span class="p">:</span>
+        <span class="n">height_total</span> <span class="o">+=</span> <span class="n">person</span><span class="p">[</span><span class="s">'height'</span><span class="p">]</span>
+        <span class="n">height_count</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="k">if</span> <span class="n">height_count</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">average_height</span> <span class="o">=</span> <span class="n">height_total</span> <span class="o">/</span> <span class="n">height_count</span>
+
+    <span class="k">print</span> <span class="n">average_height</span>
+    <span class="c1"># =&gt; 120
+</span></code></pre></td></tr></tbody></table></div></div>
+
+<p>If this seems tricky, try not thinking about the operations on the data. Think of the states the data will go through, from the list of people dictionaries to the average height. Don’t try and bundle multiple transformations together. Put each on a separate line and assign the result to a descriptively-named variable. Once the code works, condense it.</p>
+
+<p>My solution:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10</pre></td><td class="code"><pre class="highlight"><code><span class="n">people</span> <span class="o">=</span> <span class="p">[{</span><span class="s">'name'</span><span class="p">:</span> <span class="s">'Mary'</span><span class="p">,</span> <span class="s">'height'</span><span class="p">:</span> <span class="mi">160</span><span class="p">},</span>
+          <span class="p">{</span><span class="s">'name'</span><span class="p">:</span> <span class="s">'Isla'</span><span class="p">,</span> <span class="s">'height'</span><span class="p">:</span> <span class="mi">80</span><span class="p">},</span>
+          <span class="p">{</span><span class="s">'name'</span><span class="p">:</span> <span class="s">'Sam'</span><span class="p">}]</span>
+
+<span class="n">heights</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s">'height'</span><span class="p">],</span>
+              <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s">'height'</span> <span class="ow">in</span> <span class="n">x</span><span class="p">,</span> <span class="n">people</span><span class="p">))</span>
+
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">heights</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">operator</span> <span class="kn">import</span> <span class="n">add</span>
+    <span class="n">average_height</span> <span class="o">=</span> <span class="nb">reduce</span><span class="p">(</span><span class="n">add</span><span class="p">,</span> <span class="n">heights</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">heights</span><span class="p">)</span>
+</code></pre></td></tr></tbody></table></div></div>
+
+<hr />
+
+<h2 id="write-declaratively-not-imperatively">Write declaratively, not imperatively</h2>
+
+<p>The program below runs a race between three cars. At each time step, each car may move forwards or it may stall. At each time step, the program prints out the paths of the cars so far. After five time steps, the race is over.</p>
+
+<p>This is some sample output:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19</pre></td><td class="code"><pre class="highlight"><code>-
+--
+--
+
+--
+--
+---
+
+---
+--
+---
+
+----
+---
+----
+
+----
+----
+-----
+</code></pre></td></tr></tbody></table></div></div>
+
+<p>This is the program:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17</pre></td><td class="code"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">random</span>
+
+<span class="n">time</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">car_positions</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+
+<span class="k">while</span> <span class="n">time</span><span class="p">:</span>
+    <span class="c1"># decrease time
+</span>    <span class="n">time</span> <span class="o">-=</span> <span class="mi">1</span>
+
+    <span class="k">print</span> <span class="s">''</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">car_positions</span><span class="p">)):</span>
+        <span class="c1"># move car
+</span>        <span class="k">if</span> <span class="n">random</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mf">0.3</span><span class="p">:</span>
+            <span class="n">car_positions</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="c1"># draw car
+</span>        <span class="k">print</span> <span class="s">'-'</span> <span class="o">*</span> <span class="n">car_positions</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</code></pre></td></tr></tbody></table></div></div>
+<p>The code is written imperatively. A functional version would be declarative. It would describe what to do, rather than how to do it.</p>
+
+<h3 id="use-functions">Use functions</h3>
+
+<p>A program can be made more declarative by bundling pieces of the code into functions.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21<br/>22<br/>23<br/>24<br/>25<br/>26</pre></td><td class="code"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">random</span>
+
+<span class="k">def</span> <span class="nf">move_cars</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">car_positions</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">random</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mf">0.3</span><span class="p">:</span>
+            <span class="n">car_positions</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="k">def</span> <span class="nf">draw_car</span><span class="p">(</span><span class="n">car_position</span><span class="p">):</span>
+    <span class="k">print</span> <span class="s">'-'</span> <span class="o">*</span> <span class="n">car_position</span>
+
+<span class="k">def</span> <span class="nf">run_step_of_race</span><span class="p">():</span>
+    <span class="k">global</span> <span class="n">time</span>
+    <span class="n">time</span> <span class="o">-=</span> <span class="mi">1</span>
+    <span class="n">move_cars</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">draw</span><span class="p">():</span>
+    <span class="k">print</span> <span class="s">''</span>
+    <span class="k">for</span> <span class="n">car_position</span> <span class="ow">in</span> <span class="n">car_positions</span><span class="p">:</span>
+        <span class="n">draw_car</span><span class="p">(</span><span class="n">car_position</span><span class="p">)</span>
+
+<span class="n">time</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">car_positions</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+
+<span class="k">while</span> <span class="n">time</span><span class="p">:</span>
+    <span class="n">run_step_of_race</span><span class="p">()</span>
+    <span class="n">draw</span><span class="p">()</span>
+</code></pre></td></tr></tbody></table></div></div>
+
+<p>To understand this program, the reader just reads the main loop. “If there is time left, run a step of the race and draw. Check the time again.” If the reader wants to understand more about what it means to run a step of the race, or draw, they can read the code in those functions.</p>
+
+<p>There are no comments any more. The code describes itself.</p>
+
+<p>Splitting code into functions is a great, low brain power way to make code more readable.</p>
+
+<p>This technique uses functions, but it uses them as sub-routines. They parcel up code. The code is not functional in the sense of the guide rope. The functions in the code use state that was not passed as arguments. They affect the code around them by changing external variables, rather than by returning values. To check what a function really does, the reader must read each line carefully. If they find an external variable, they must find its origin. They must see what other functions change that variable.</p>
+
+<h3 id="remove-state">Remove state</h3>
+
+<p>This is a functional version of the car race code:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21<br/>22<br/>23<br/>24</pre></td><td class="code"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">random</span>
+
+<span class="k">def</span> <span class="nf">move_cars</span><span class="p">(</span><span class="n">car_positions</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">random</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mf">0.3</span> <span class="k">else</span> <span class="n">x</span><span class="p">,</span>
+               <span class="n">car_positions</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">output_car</span><span class="p">(</span><span class="n">car_position</span><span class="p">):</span>
+    <span class="k">return</span> <span class="s">'-'</span> <span class="o">*</span> <span class="n">car_position</span>
+
+<span class="k">def</span> <span class="nf">run_step_of_race</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s">'time'</span><span class="p">:</span> <span class="n">state</span><span class="p">[</span><span class="s">'time'</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="s">'car_positions'</span><span class="p">:</span> <span class="n">move_cars</span><span class="p">(</span><span class="n">state</span><span class="p">[</span><span class="s">'car_positions'</span><span class="p">])}</span>
+
+<span class="k">def</span> <span class="nf">draw</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>
+    <span class="k">print</span> <span class="s">''</span>
+    <span class="k">print</span> <span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">output_car</span><span class="p">,</span> <span class="n">state</span><span class="p">[</span><span class="s">'car_positions'</span><span class="p">]))</span>
+
+<span class="k">def</span> <span class="nf">race</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>
+    <span class="n">draw</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">state</span><span class="p">[</span><span class="s">'time'</span><span class="p">]:</span>
+        <span class="n">race</span><span class="p">(</span><span class="n">run_step_of_race</span><span class="p">(</span><span class="n">state</span><span class="p">))</span>
+
+<span class="n">race</span><span class="p">({</span><span class="s">'time'</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+      <span class="s">'car_positions'</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]})</span>
+</code></pre></td></tr></tbody></table></div></div>
+<p>The code is still split into functions, but the functions are functional. There are three signs of this. First, there are no longer any shared variables. <code class="language-plaintext highlighter-rouge">time</code> and <code class="language-plaintext highlighter-rouge">car_positions</code> get passed straight into <code class="language-plaintext highlighter-rouge">race()</code>. Second, functions take parameters. Third, no variables are instantiated inside functions. All data changes are done with return values. <code class="language-plaintext highlighter-rouge">race()</code> recurses<sup id="fnref:3:1"><a href="#fn:3" class="footnote">3</a></sup> with the result of <code class="language-plaintext highlighter-rouge">run_step_of_race()</code>. Each time a step generates a new state, it is passed immediately into the next step.</p>
+
+<p>Now, here are two functions, <code class="language-plaintext highlighter-rouge">zero()</code> and <code class="language-plaintext highlighter-rouge">one()</code>:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7</pre></td><td class="code"><pre class="highlight"><code><span class="k">def</span> <span class="nf">zero</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s">"0"</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+
+<span class="k">def</span> <span class="nf">one</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s">"1"</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+</code></pre></td></tr></tbody></table></div></div>
+<p><code class="language-plaintext highlighter-rouge">zero()</code> takes a string, <code class="language-plaintext highlighter-rouge">s</code>. If the first character is <code class="language-plaintext highlighter-rouge">'0'</code>, it returns the rest of the string. If it is not, it returns <code class="language-plaintext highlighter-rouge">None</code>, the default return value of Python functions. <code class="language-plaintext highlighter-rouge">one()</code> does the same, but for a first character of <code class="language-plaintext highlighter-rouge">'1'</code>.</p>
+
+<p>Imagine a function called <code class="language-plaintext highlighter-rouge">rule_sequence()</code>. It takes a string and a list of rule functions of the form of <code class="language-plaintext highlighter-rouge">zero()</code> and <code class="language-plaintext highlighter-rouge">one()</code>. It calls the first rule on the string. Unless <code class="language-plaintext highlighter-rouge">None</code> is returned, it takes the return value and calls the second rule on it. Unless <code class="language-plaintext highlighter-rouge">None</code> is returned, it takes the return value and calls the third rule on it. And so forth. If any rule returns <code class="language-plaintext highlighter-rouge">None</code>, <code class="language-plaintext highlighter-rouge">rule_sequence()</code> stops and returns <code class="language-plaintext highlighter-rouge">None</code>. Otherwise, it returns the return value of the final rule.</p>
+
+<p>This is some sample input and output:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5</pre></td><td class="code"><pre class="highlight"><code><span class="k">print</span> <span class="n">rule_sequence</span><span class="p">(</span><span class="s">'0101'</span><span class="p">,</span> <span class="p">[</span><span class="n">zero</span><span class="p">,</span> <span class="n">one</span><span class="p">,</span> <span class="n">zero</span><span class="p">])</span>
+<span class="c1"># =&gt; 1
+</span>
+<span class="k">print</span> <span class="n">rule_sequence</span><span class="p">(</span><span class="s">'0101'</span><span class="p">,</span> <span class="p">[</span><span class="n">zero</span><span class="p">,</span> <span class="n">zero</span><span class="p">])</span>
+<span class="c1"># =&gt; None
+</span></code></pre></td></tr></tbody></table></div></div>
+
+<p>This is the imperative version of <code class="language-plaintext highlighter-rouge">rule_sequence()</code>:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7</pre></td><td class="code"><pre class="highlight"><code><span class="k">def</span> <span class="nf">rule_sequence</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">rules</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">rule</span> <span class="ow">in</span> <span class="n">rules</span><span class="p">:</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">rule</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">s</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">break</span>
+
+    <span class="k">return</span> <span class="n">s</span>
+</code></pre></td></tr></tbody></table></div></div>
+
+<p><strong>Exercise 3</strong>. The code above uses a loop to do its work. Make it more declarative by rewriting it as a recursion.</p>
+
+<p>My solution:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5</pre></td><td class="code"><pre class="highlight"><code><span class="k">def</span> <span class="nf">rule_sequence</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">rules</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">s</span> <span class="o">==</span> <span class="bp">None</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">rules</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">s</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">rule_sequence</span><span class="p">(</span><span class="n">rules</span><span class="p">[</span><span class="mi">0</span><span class="p">](</span><span class="n">s</span><span class="p">),</span> <span class="n">rules</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+</code></pre></td></tr></tbody></table></div></div>
+
+<hr />
+
+<h2 id="use-pipelines">Use pipelines</h2>
+
+<p>In the previous section, some imperative loops were rewritten as recursions that called out to auxiliary functions. In this section, a different type of imperative loop will be rewritten using a technique called a pipeline.</p>
+
+<p>The loop below performs transformations on dictionaries that hold the name, incorrect country of origin and active status of some bands.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16</pre></td><td class="code"><pre class="highlight"><code><span class="n">bands</span> <span class="o">=</span> <span class="p">[{</span><span class="s">'name'</span><span class="p">:</span> <span class="s">'sunset rubdown'</span><span class="p">,</span> <span class="s">'country'</span><span class="p">:</span> <span class="s">'UK'</span><span class="p">,</span> <span class="s">'active'</span><span class="p">:</span> <span class="bp">False</span><span class="p">},</span>
+         <span class="p">{</span><span class="s">'name'</span><span class="p">:</span> <span class="s">'women'</span><span class="p">,</span> <span class="s">'country'</span><span class="p">:</span> <span class="s">'Germany'</span><span class="p">,</span> <span class="s">'active'</span><span class="p">:</span> <span class="bp">False</span><span class="p">},</span>
+         <span class="p">{</span><span class="s">'name'</span><span class="p">:</span> <span class="s">'a silver mt. zion'</span><span class="p">,</span> <span class="s">'country'</span><span class="p">:</span> <span class="s">'Spain'</span><span class="p">,</span> <span class="s">'active'</span><span class="p">:</span> <span class="bp">True</span><span class="p">}]</span>
+
+<span class="k">def</span> <span class="nf">format_bands</span><span class="p">(</span><span class="n">bands</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">band</span> <span class="ow">in</span> <span class="n">bands</span><span class="p">:</span>
+        <span class="n">band</span><span class="p">[</span><span class="s">'country'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'Canada'</span>
+        <span class="n">band</span><span class="p">[</span><span class="s">'name'</span><span class="p">]</span> <span class="o">=</span> <span class="n">band</span><span class="p">[</span><span class="s">'name'</span><span class="p">].</span><span class="n">replace</span><span class="p">(</span><span class="s">'.'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+        <span class="n">band</span><span class="p">[</span><span class="s">'name'</span><span class="p">]</span> <span class="o">=</span> <span class="n">band</span><span class="p">[</span><span class="s">'name'</span><span class="p">].</span><span class="n">title</span><span class="p">()</span>
+
+<span class="n">format_bands</span><span class="p">(</span><span class="n">bands</span><span class="p">)</span>
+
+<span class="k">print</span> <span class="n">bands</span>
+<span class="c1"># =&gt; [{'name': 'Sunset Rubdown', 'active': False, 'country': 'Canada'},
+#     {'name': 'Women', 'active': False, 'country': 'Canada' },
+#     {'name': 'A Silver Mt Zion', 'active': True, 'country': 'Canada'}]
+</span></code></pre></td></tr></tbody></table></div></div>
+
+<p>Worries are stirred by the name of the function. “format” is very vague. Upon closer inspection of the code, these worries begin to claw. Three things happen in the same loop. The <code class="language-plaintext highlighter-rouge">'country'</code> key gets set to <code class="language-plaintext highlighter-rouge">'Canada'</code>. Punctuation is removed from the band name. The band name gets capitalized. It is hard to tell what the code is intended to do and hard to tell if it does what it appears to do. The code is hard to reuse, hard to test and hard to parallelize.</p>
+
+<p>Compare it with this:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3</pre></td><td class="code"><pre class="highlight"><code><span class="k">print</span> <span class="n">pipeline_each</span><span class="p">(</span><span class="n">bands</span><span class="p">,</span> <span class="p">[</span><span class="n">set_canada_as_country</span><span class="p">,</span>
+                            <span class="n">strip_punctuation_from_name</span><span class="p">,</span>
+                            <span class="n">capitalize_names</span><span class="p">])</span>
+</code></pre></td></tr></tbody></table></div></div>
+
+<p>This code is easy to understand. It gives the impression that the auxiliary functions are functional because they seem to be chained together. The output from the previous one comprises the input to the next. If they are functional, they are easy to verify. They are also easy to reuse, easy to test and easy to parallelize.</p>
+
+<p>The job of <code class="language-plaintext highlighter-rouge">pipeline_each()</code> is to pass the bands, one at a time, to a transformation function, like <code class="language-plaintext highlighter-rouge">set_canada_as_country()</code>. After the function has been applied to all the bands, <code class="language-plaintext highlighter-rouge">pipeline_each()</code> bundles up the transformed bands. Then, it passes each one to the next function.</p>
+
+<p>Let’s look at the transformation functions.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14</pre></td><td class="code"><pre class="highlight"><code><span class="k">def</span> <span class="nf">assoc</span><span class="p">(</span><span class="n">_d</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">_d</span><span class="p">)</span>
+    <span class="n">d</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+    <span class="k">return</span> <span class="n">d</span>
+
+<span class="k">def</span> <span class="nf">set_canada_as_country</span><span class="p">(</span><span class="n">band</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">assoc</span><span class="p">(</span><span class="n">band</span><span class="p">,</span> <span class="s">'country'</span><span class="p">,</span> <span class="s">"Canada"</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">strip_punctuation_from_name</span><span class="p">(</span><span class="n">band</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">assoc</span><span class="p">(</span><span class="n">band</span><span class="p">,</span> <span class="s">'name'</span><span class="p">,</span> <span class="n">band</span><span class="p">[</span><span class="s">'name'</span><span class="p">].</span><span class="n">replace</span><span class="p">(</span><span class="s">'.'</span><span class="p">,</span> <span class="s">''</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">capitalize_names</span><span class="p">(</span><span class="n">band</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">assoc</span><span class="p">(</span><span class="n">band</span><span class="p">,</span> <span class="s">'name'</span><span class="p">,</span> <span class="n">band</span><span class="p">[</span><span class="s">'name'</span><span class="p">].</span><span class="n">title</span><span class="p">())</span>
+</code></pre></td></tr></tbody></table></div></div>
+
+<p>Each one associates a key on a band with a new value. There is no easy way to do this without mutating the original band. <code class="language-plaintext highlighter-rouge">assoc()</code> solves this problem by using <code class="language-plaintext highlighter-rouge">deepcopy()</code> to produce a copy of the passed dictionary. Each transformation function makes its modification to the copy and returns that copy.</p>
+
+<p>Everything seems fine. Band dictionary originals are protected from mutation when a key is associated with a new value. But there are two other potential mutations in the code above. In <code class="language-plaintext highlighter-rouge">strip_punctuation_from_name()</code>, the unpunctuated name is generated by calling <code class="language-plaintext highlighter-rouge">replace()</code> on the original name. In <code class="language-plaintext highlighter-rouge">capitalize_names()</code>, the capitalized name is generated by calling <code class="language-plaintext highlighter-rouge">title()</code> on the original name. If <code class="language-plaintext highlighter-rouge">replace()</code> and <code class="language-plaintext highlighter-rouge">title()</code> are not functional, <code class="language-plaintext highlighter-rouge">strip_punctuation_from_name()</code> and <code class="language-plaintext highlighter-rouge">capitalize_names()</code> are not functional.</p>
+
+<p>Fortunately, <code class="language-plaintext highlighter-rouge">replace()</code> and <code class="language-plaintext highlighter-rouge">title()</code> do not mutate the strings they operate on. This is because strings are immutable in Python. When, for example, <code class="language-plaintext highlighter-rouge">replace()</code> operates on a band name string, the original band name is copied and <code class="language-plaintext highlighter-rouge">replace()</code> is called on the copy. Phew.</p>
+
+<p>This contrast between the mutability of strings and dictionaries in Python illustrates the appeal of languages like Clojure. The programmer need never think about whether they are mutating data. They aren’t.</p>
+
+<p><strong>Exercise 4</strong>. Try and write the <code class="language-plaintext highlighter-rouge">pipeline_each</code> function. Think about the order of operations. The bands in the array are passed, one band at a time, to the first transformation function. The bands in the resulting array are passed, one band at a time, to the second transformation function. And so forth.</p>
+
+<p>My solution:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4</pre></td><td class="code"><pre class="highlight"><code><span class="k">def</span> <span class="nf">pipeline_each</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">fns</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">map</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="p">),</span>
+                  <span class="n">fns</span><span class="p">,</span>
+                  <span class="n">data</span><span class="p">)</span>
+</code></pre></td></tr></tbody></table></div></div>
+
+<p>All three transformation functions boil down to making a change to a particular field on the passed band. <code class="language-plaintext highlighter-rouge">call()</code> can be used to abstract that. It takes a function to apply and the key of the value to apply it to.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7</pre></td><td class="code"><pre class="highlight"><code><span class="n">set_canada_as_country</span> <span class="o">=</span> <span class="n">call</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s">'Canada'</span><span class="p">,</span> <span class="s">'country'</span><span class="p">)</span>
+<span class="n">strip_punctuation_from_name</span> <span class="o">=</span> <span class="n">call</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">.</span><span class="n">replace</span><span class="p">(</span><span class="s">'.'</span><span class="p">,</span> <span class="s">''</span><span class="p">),</span> <span class="s">'name'</span><span class="p">)</span>
+<span class="n">capitalize_names</span> <span class="o">=</span> <span class="n">call</span><span class="p">(</span><span class="nb">str</span><span class="p">.</span><span class="n">title</span><span class="p">,</span> <span class="s">'name'</span><span class="p">)</span>
+
+<span class="k">print</span> <span class="n">pipeline_each</span><span class="p">(</span><span class="n">bands</span><span class="p">,</span> <span class="p">[</span><span class="n">set_canada_as_country</span><span class="p">,</span>
+                            <span class="n">strip_punctuation_from_name</span><span class="p">,</span>
+                            <span class="n">capitalize_names</span><span class="p">])</span>
+</code></pre></td></tr></tbody></table></div></div>
+
+<p>Or, if we are willing to sacrifice readability for conciseness, just:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3</pre></td><td class="code"><pre class="highlight"><code><span class="k">print</span> <span class="n">pipeline_each</span><span class="p">(</span><span class="n">bands</span><span class="p">,</span> <span class="p">[</span><span class="n">call</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s">'Canada'</span><span class="p">,</span> <span class="s">'country'</span><span class="p">),</span>
+                            <span class="n">call</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">.</span><span class="n">replace</span><span class="p">(</span><span class="s">'.'</span><span class="p">,</span> <span class="s">''</span><span class="p">),</span> <span class="s">'name'</span><span class="p">),</span>
+                            <span class="n">call</span><span class="p">(</span><span class="nb">str</span><span class="p">.</span><span class="n">title</span><span class="p">,</span> <span class="s">'name'</span><span class="p">)])</span>
+</code></pre></td></tr></tbody></table></div></div>
+
+<p>The code for <code class="language-plaintext highlighter-rouge">call()</code>:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10</pre></td><td class="code"><pre class="highlight"><code><span class="k">def</span> <span class="nf">assoc</span><span class="p">(</span><span class="n">_d</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">_d</span><span class="p">)</span>
+    <span class="n">d</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+    <span class="k">return</span> <span class="n">d</span>
+
+<span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">apply_fn</span><span class="p">(</span><span class="n">record</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">assoc</span><span class="p">(</span><span class="n">record</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">fn</span><span class="p">(</span><span class="n">record</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)))</span>
+    <span class="k">return</span> <span class="n">apply_fn</span>
+</code></pre></td></tr></tbody></table></div></div>
+
+<p>There is a lot going on here. Let’s take it piece by piece.</p>
+
+<p>One. <code class="language-plaintext highlighter-rouge">call()</code> is a higher order function. A higher order function takes a function as an argument, or returns a function. Or, like <code class="language-plaintext highlighter-rouge">call()</code>, it does both.</p>
+
+<p>Two. <code class="language-plaintext highlighter-rouge">apply_fn()</code> looks very similar to the three transformation functions. It takes a record (a band). It looks up the value at <code class="language-plaintext highlighter-rouge">record[key]</code>. It calls <code class="language-plaintext highlighter-rouge">fn</code> on that value. It assigns the result back to a copy of the record. It returns the copy.</p>
+
+<p>Three. <code class="language-plaintext highlighter-rouge">call()</code> does not do any actual work. <code class="language-plaintext highlighter-rouge">apply_fn()</code>, when called, will do the work. In the example of using <code class="language-plaintext highlighter-rouge">pipeline_each()</code> above, one instance of <code class="language-plaintext highlighter-rouge">apply_fn()</code> will set <code class="language-plaintext highlighter-rouge">'country'</code> to <code class="language-plaintext highlighter-rouge">'Canada'</code> on a passed band. Another instance will capitalize the name of a passed band.</p>
+
+<p>Four. When an <code class="language-plaintext highlighter-rouge">apply_fn()</code> instance is run, <code class="language-plaintext highlighter-rouge">fn</code> and <code class="language-plaintext highlighter-rouge">key</code> will not be in scope. They are neither arguments to <code class="language-plaintext highlighter-rouge">apply_fn()</code>, nor locals inside it. But they will still be accessible. When a function is defined, it saves references to the variables it closes over: those that were defined in a scope outside the function and that are used inside the function. When the function is run and its code references a variable, Python looks up the variable in the locals and in the arguments. If it doesn’t find it there, it looks in the saved references to closed over variables. This is where it will find <code class="language-plaintext highlighter-rouge">fn</code> and <code class="language-plaintext highlighter-rouge">key</code>.</p>
+
+<p>Five. There is no mention of bands in the <code class="language-plaintext highlighter-rouge">call()</code> code. That is because <code class="language-plaintext highlighter-rouge">call()</code> could be used to generate pipeline functions for any program, regardless of topic. Functional programming is partly about building up a library of generic, reusable, composable functions.</p>
+
+<p>Good job. Closures, higher order functions and variable scope all covered in the space of a few paragraphs. Have a nice glass of lemonade.</p>
+
+<p>There is one more piece of band processing to do. That is to remove everything but the name and country. <code class="language-plaintext highlighter-rouge">extract_name_and_country()</code> can pull that information out:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14</pre></td><td class="code"><pre class="highlight"><code><span class="k">def</span> <span class="nf">extract_name_and_country</span><span class="p">(</span><span class="n">band</span><span class="p">):</span>
+    <span class="n">plucked_band</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">plucked_band</span><span class="p">[</span><span class="s">'name'</span><span class="p">]</span> <span class="o">=</span> <span class="n">band</span><span class="p">[</span><span class="s">'name'</span><span class="p">]</span>
+    <span class="n">plucked_band</span><span class="p">[</span><span class="s">'country'</span><span class="p">]</span> <span class="o">=</span> <span class="n">band</span><span class="p">[</span><span class="s">'country'</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">plucked_band</span>
+
+<span class="k">print</span> <span class="n">pipeline_each</span><span class="p">(</span><span class="n">bands</span><span class="p">,</span> <span class="p">[</span><span class="n">call</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s">'Canada'</span><span class="p">,</span> <span class="s">'country'</span><span class="p">),</span>
+                            <span class="n">call</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">.</span><span class="n">replace</span><span class="p">(</span><span class="s">'.'</span><span class="p">,</span> <span class="s">''</span><span class="p">),</span> <span class="s">'name'</span><span class="p">),</span>
+                            <span class="n">call</span><span class="p">(</span><span class="nb">str</span><span class="p">.</span><span class="n">title</span><span class="p">,</span> <span class="s">'name'</span><span class="p">),</span>
+                            <span class="n">extract_name_and_country</span><span class="p">])</span>
+
+<span class="c1"># =&gt; [{'name': 'Sunset Rubdown', 'country': 'Canada'},
+#     {'name': 'Women', 'country': 'Canada'},
+#     {'name': 'A Silver Mt Zion', 'country': 'Canada'}]
+</span></code></pre></td></tr></tbody></table></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">extract_name_and_country()</code> could have been written as a generic function called <code class="language-plaintext highlighter-rouge">pluck()</code>. <code class="language-plaintext highlighter-rouge">pluck()</code> would be used like this:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4</pre></td><td class="code"><pre class="highlight"><code><span class="k">print</span> <span class="n">pipeline_each</span><span class="p">(</span><span class="n">bands</span><span class="p">,</span> <span class="p">[</span><span class="n">call</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s">'Canada'</span><span class="p">,</span> <span class="s">'country'</span><span class="p">),</span>
+                            <span class="n">call</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">.</span><span class="n">replace</span><span class="p">(</span><span class="s">'.'</span><span class="p">,</span> <span class="s">''</span><span class="p">),</span> <span class="s">'name'</span><span class="p">),</span>
+                            <span class="n">call</span><span class="p">(</span><span class="nb">str</span><span class="p">.</span><span class="n">title</span><span class="p">,</span> <span class="s">'name'</span><span class="p">),</span>
+                            <span class="n">pluck</span><span class="p">([</span><span class="s">'name'</span><span class="p">,</span> <span class="s">'country'</span><span class="p">])])</span>
+</code></pre></td></tr></tbody></table></div></div>
+
+<p><strong>Exercise 5</strong>. <code class="language-plaintext highlighter-rouge">pluck()</code> takes a list of keys to extract from each record. Try and write it. It will need to be a higher order function.</p>
+
+<p>My solution:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6</pre></td><td class="code"><pre class="highlight"><code><span class="k">def</span> <span class="nf">pluck</span><span class="p">(</span><span class="n">keys</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">pluck_fn</span><span class="p">(</span><span class="n">record</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">assoc</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">record</span><span class="p">[</span><span class="n">x</span><span class="p">]),</span>
+                      <span class="n">keys</span><span class="p">,</span>
+                      <span class="p">{})</span>
+    <span class="k">return</span> <span class="n">pluck_fn</span>
+</code></pre></td></tr></tbody></table></div></div>
+
+<hr />
+
+<h2 id="what-now">What now?</h2>
+
+<p>Functional code co-exists very well with code written in other styles. The transformations in this article can be applied to any code base in any language. Try applying them to your own code.</p>
+
+<p>Think of Mary, Isla and Sam. Turn iterations of lists into maps and reduces.</p>
+
+<p>Think of the race. Break code into functions. Make those functions functional. Turn a loop that repeats a process into a recursion.</p>
+
+<p>Think of the bands. Turn a sequence of operations into a pipeline.</p>
+
+<hr />
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>An immutable piece of data is one that cannot be changed. Some languages, like Clojure, make all values immutable by default. Any “mutating” operations copy the value, change it and pass back the changed copy. This eliminates bugs that arise from a programmer’s incomplete model of the possible states their program may enter. <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:2">
+      <p>Languages that support first class functions allow functions to be treated like any other value. This means they can be created, passed to functions, returned from functions and stored inside data structures. <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:3">
+      <p>Tail call optimisation is a programming language feature. Each time a function recurses, a new stack frame is created. A stack frame is used to store the arguments and local values for the current function invocation. If a function recurses a large number of times, it is possible for the interpreter or compiler to run out of memory. Languages with tail call optimisation reuse the same stack frame for their entire sequence of recursive calls. Languages like Python that do not have tail call optimisation generally limit the number of times a function may recurse to some number in the thousands. In the case of the race() function, there are only five time steps, so it is safe. <a href="#fnref:3" class="reversefootnote">&#8617;</a> <a href="#fnref:3:1" class="reversefootnote">&#8617;<sup>2</sup></a></p>
+    </li>
+    <li id="fn:4">
+      <p>Currying means decomposing a function that takes multiple arguments into a function that takes the first argument and returns a function that takes the next argument, and so forth for all the arguments. <a href="#fnref:4" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:5">
+      <p>Parallelization means running the same code concurrently without synchronization. These concurrent processes are often run on multiple processors. <a href="#fnref:5" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:6">
+      <p>Lazy evaluation is a compiler technique that avoids running code until the result is needed. <a href="#fnref:6" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:7">
+      <p>A process is deterministic if repetitions yield the same result every time. <a href="#fnref:7" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            
+            <a href="/tag/#/FunctionalProgramming" rel="tag"># FunctionalProgramming</a>
+          
+        </div>
+      
+
+      
+      
+      
+      
+      
+
+      
+      
+        <div class="post-nav" id="post-nav-id">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/notes/2020/07/04/HistoryOfRock/" rel="next" title="Notes of 「History of Rock」">
+                <i class="fa fa-chevron-left"></i> Notes of 「History of Rock」
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/notes/2020/06/28/%E6%96%87%E5%AD%A6%E7%90%86%E8%AE%BA/" rel="prev" title="读「文学理论」">
+                读「文学理论」 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+      
+
+      
+    </footer>
+  </article>
+
+  <div class="post-spread">
+    
+  </div>
+</div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        
+        
+        
+
+
+
+
+
+
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar/cloud_smile.png"
+               alt="Austin" />
+          <p class="site-author-name" itemprop="name">Austin</p>
+           
+              <p class="site-description motion-element" itemprop="description">Austin's adventures in wonderland</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">47</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/">
+                <span class="site-state-item-count">32</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              
+              
+              <span class="links-of-author-item">
+                <a href="https://github.com/austinxu13" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              
+              
+              <span class="links-of-author-item">
+                <a href="https://gitlab.com/austinxu" target="_blank" title="GitLab">
+                  
+                    <i class="fa fa-fw fa-gitlab"></i>
+                  
+                  GitLab
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                
+                
+                <li class="links-of-blogroll-item">
+                  <a href="http://pdg.lbl.gov/index.html" title="PDG" target="_blank">PDG</a>
+                </li>
+              
+                
+                
+                <li class="links-of-blogroll-item">
+                  <a href="https://lhcb.web.cern.ch/" title="LHCb" target="_blank">LHCb</a>
+                </li>
+              
+                
+                
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.zhihu.com/" title="Zhihu" target="_blank">Zhihu</a>
+                </li>
+              
+                
+                
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.quora.com/" title="Quora" target="_blank">Quora</a>
+                </li>
+              
+                
+                
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.imdb.com/" title="IMDb" target="_blank">IMDb</a>
+                </li>
+              
+                
+                
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.douban.com/" title="douban" target="_blank">douban</a>
+                </li>
+              
+                
+                
+                <li class="links-of-blogroll-item">
+                  <a href="https://bgm.tv/" title="bangumi" target="_blank">bangumi</a>
+                </li>
+              
+                
+                
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.japanesepod101.com/" title="JapanesePod101" target="_blank">JapanesePod101</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+
+
+
+
+
+
+
+            
+              <div class="post-toc-content">
+    <ol class=nav>
+      <li class="nav-item nav-level-2"> <a class="nav-link" href="#a-guide-rope"> <span class="nav-text">A guide rope</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#dont-iterate-over-lists-use-map-and-reduce"> <span class="nav-text">Don’t iterate over lists. Use map and reduce.</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#map"> <span class="nav-text">Map</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#reduce"> <span class="nav-text">Reduce</span> </a> </li> </ol> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#write-declaratively-not-imperatively"> <span class="nav-text">Write declaratively, not imperatively</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#use-functions"> <span class="nav-text">Use functions</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#remove-state"> <span class="nav-text">Remove state</span> </a> </li> </ol> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#use-pipelines"> <span class="nav-text">Use pipelines</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#what-now"> <span class="nav-text">What now?</span> </a> </li>
+    </ol>
+  </div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Austin</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+   
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/assets/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="/assets/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/assets/js/src/post-details.js?v=5.1.1"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+    
+
+  
+
+
+
+
+
+
+
+  
+
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
+
